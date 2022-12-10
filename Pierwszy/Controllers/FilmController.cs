@@ -9,36 +9,39 @@ namespace Pierwszy.Controllers
         private static IList<Filmy> filmies = new List<Filmy>
         {
             new Filmy(){Id=1,Tytul="Film1", Opis="Opis1",Ocena=3},
-            new Filmy(){Id=2,Tytul="Film2", Opis="Opis2",Ocena=6},
-            new Filmy(){Id=3,Tytul="Film3", Opis="Opis3",Ocena=2},
+            new Filmy(){Id=2,Tytul="Film2", Opis="Opis2",Ocena=4},
+            new Filmy(){Id=3,Tytul="Film3", Opis="Opis3",Ocena=1},
 
         };
 
         // GET: FilmController
         public ActionResult Index()
         {
-            return View();
+            return View(filmies);
         }
 
         // GET: FilmController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            return View(filmies.FirstOrDefault(x=>x.Id==id));
         }
 
         // GET: FilmController/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Filmy());
         }
 
         // POST: FilmController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Filmy filmy)
         {
             try
             {
+                filmy.Id = filmies.Count + 1;
+                filmies.Add(filmy);
                 return RedirectToAction(nameof(Index));
             }
             catch
