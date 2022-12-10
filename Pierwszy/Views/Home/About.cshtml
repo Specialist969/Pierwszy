@@ -1,0 +1,12 @@
+﻿@model Pierwszy.Models.DaneModel[]
+@{
+    ViewData["Title"] = "About";
+}
+
+<h1>About</h1>
+<p>Witaj @ViewBag.Info @ViewBag.Imie</p>
+<p>Jest godzina:  @ViewBag.godzina</p>
+@foreach (DaneModel d in Model)
+{
+    <p>@d.Imię @d.Nazwisko</p>
+}
