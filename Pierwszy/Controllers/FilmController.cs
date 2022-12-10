@@ -79,7 +79,7 @@ namespace Pierwszy.Controllers
         // GET: FilmController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(filmies.FirstOrDefault(x => x.Id == id));
         }
 
         // POST: FilmController/Delete/5
