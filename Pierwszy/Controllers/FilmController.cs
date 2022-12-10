@@ -59,10 +59,15 @@ namespace Pierwszy.Controllers
         // POST: FilmController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Filmy filmy)
         {
             try
             {
+                Filmy film = filmies.FirstOrDefault(x => x.Id == id);
+                filmy.Tytul = filmy.Tytul;
+                filmy.Opis = filmy.Opis;
+                filmy.Ocena = filmy.Ocena;
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -80,10 +85,12 @@ namespace Pierwszy.Controllers
         // POST: FilmController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Filmy filmy)
         {
             try
             {
+                Filmy film = filmies.FirstOrDefault(x => x.Id == id);
+                filmies.Remove(film);
                 return RedirectToAction(nameof(Index));
             }
             catch
