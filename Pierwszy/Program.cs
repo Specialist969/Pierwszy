@@ -1,7 +1,14 @@
+using Pierwszy.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<FilmDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
 
 var app = builder.Build();
 

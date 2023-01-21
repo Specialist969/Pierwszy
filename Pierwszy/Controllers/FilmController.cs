@@ -6,25 +6,35 @@ namespace Pierwszy.Controllers
 {
     public class FilmController : Controller
     {
-        private static IList<Filmy> filmies = new List<Filmy>
-        {
-            new Filmy(){Id=1,Tytul="Film1", Opis="Opis1",Ocena=3},
-            new Filmy(){Id=2,Tytul="Film2", Opis="Opis2",Ocena=4},
-            new Filmy(){Id=3,Tytul="Film3", Opis="Opis3",Ocena=1},
 
-        };
+        private readonly FilmDbContext _contex;
+        public FilmController(FilmDbContext contex)
+        {
+            _contex = contex;
+        }
+
+
+        //private static IList<Filmy> filmies = new List<Filmy>
+        //{
+        //    new Filmy(){Id=1,Tytul="Film1", Opis="Opis1",Ocena=3},
+        //    new Filmy(){Id=2,Tytul="Film2", Opis="Opis2",Ocena=4},
+        //    new Filmy(){Id=3,Tytul="Film3", Opis="Opis3",Ocena=1},
+
+        //};
 
         // GET: FilmController
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
-            return View(filmies);
+            //return View(filmies);
+            return View(_contex.Films.ToList());
         }
 
         // GET: FilmController/Details/5
         public ActionResult Details(int id)
         {
 
-            return View(filmies.FirstOrDefault(x=>x.Id==id));
+            // return View(filmies.FirstOrDefault(x=>x.Id==id));
+            return View(_contex.Films.Find());
         }
 
         // GET: FilmController/Create
@@ -97,6 +107,6 @@ namespace Pierwszy.Controllers
             {
                 return View();
             }
-        }
+        }*/
     }
 }
